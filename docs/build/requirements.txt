@@ -1,0 +1,4 @@
+mako
+dogpile
+changelog
+sphinx-paramlinks

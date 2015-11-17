@@ -1,0 +1,2 @@
+dogpile.cache==0.5.7
+dogpile.core==0.4.1
