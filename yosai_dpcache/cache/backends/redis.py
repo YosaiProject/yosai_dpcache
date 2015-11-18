@@ -7,7 +7,7 @@ Provides backends for talking to `Redis <http://redis.io>`_.
 """
 
 from __future__ import absolute_import
-from yosai_dpcache.cache.api import CacheBackend, NO_VALUE
+from yosai_dpcache.cache.api import CacheBackend
 from yosai_dpcache.cache.compat import u
 
 redis = None
@@ -137,17 +137,13 @@ class RedisBackend(CacheBackend):
             return None
 
     def get(self, key):
-        value = self.client.get(key)
-        if value is None:
-            return NO_VALUE
-
-        return value
+        return self.client.get(key)
 
     def get_multi(self, keys):
         if not keys:
             return []
         values = self.client.mget(keys)
-        return [v if v is not None else NO_VALUE for v in values]
+        return [v for v in values]
 
     def set(self, key, value, expiration):
         self.client.setex(key, expiration, value)

@@ -38,8 +38,8 @@ Comments about the yosai_dpcache fork
 - expiration times are always set for cache entries
 """
 
-from dogpile.core import Lock, NeedRegenerationException
-from dogpile.core.nameregistry import NameRegistry
+from yosai_dpcache.dogpile.core import Lock, NeedRegenerationException
+from yosai_dpcache.dogpile.core.nameregistry import NameRegistry
 from . import exception
 from .util import function_key_generator, PluginLoader, \
     memoized_property, coerce_string_conf, function_multi_key_generator
@@ -416,7 +416,7 @@ class CacheRegion(object):
 
         return self.backend.get_multi(keys)
 
-    def get_or_create(self, key, creator, expiration_time):
+    def get_or_create(self, key, creator, expiration):
         """
         Return a cached value based on the given key.
 
@@ -456,29 +456,17 @@ class CacheRegion(object):
             key = self.key_mangler(key)
 
         def get_value():
-            return self.backend.get(key)
+            value = self.backend.get(key)
+            if value is None:
+                raise NeedRegenerationException()
+            return value
 
-        # renamed as part of refactor (was gen_value)
-        def set_value():
-            self.backend.set(key, creator())
-            # no longer returns any values
+        def gen_value():
+            created_value = creator()
+            self.backend.set(key, created_value, expiration)
+            return created_value
 
-        if expiration_time is None:
-            expiration_time = self.expiration_time
-
-        if self.async_creation_runner:
-            def async_creator(mutex):
-                return self.async_creation_runner(
-                    self, orig_key, creator, mutex)
-        else:
-            async_creator = None
-
-        with Lock(
-                self._mutex(key),
-                set_value,
-                get_value,
-                expiration_time,
-                async_creator) as value:
+        with Lock(self._mutex(key), gen_value, get_value) as value:
             return value
 
     def set(self, key, value, expiration=None):

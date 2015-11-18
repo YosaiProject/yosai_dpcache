@@ -1,21 +1,3 @@
-class NoValue(object):
-    """Describe a missing cache value.
-
-    The :attr:`.NO_VALUE` module global
-    should be used.
-
-    """
-    @property
-    def payload(self):
-        return self
-
-    def __bool__(self):  # pragma NO COVERAGE
-        return False
-
-NO_VALUE = NoValue()
-"""Value returned from ``get()`` that describes
-a  key not present."""
-
 class CacheBackend(object):
     """Base class for backend implementations."""
 

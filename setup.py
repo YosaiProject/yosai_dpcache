@@ -68,7 +68,6 @@ setup(
     license='Apache License 2.0',
     packages=find_packages('.', exclude=['ez_setup', 'tests*']),
     zip_safe=False,
-    install_requires=['dogpile.core>=0.4.1'],
     tests_require=['pytest', 'pytest-cov', 'mock'],
     cmdclass={'test': PyTest,
               'clean': CleanCommand,
