@@ -1,0 +1,230 @@
+Following is the output of a cleanly run dogpile.cache thread test:
+=======================================================================
+
+python thread_test.py                                                                      08:29:56 
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+
+
+++++ generated is: ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+++++ generated is:
+ ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+++++ generated is:
+----_------ if generated is not NOT_REGENERATED ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+
+----_------ if generated is not NOT_REGENERATED
+++++ generated is:
+ ('some value', 1447939798.311484)  , generated type: <class 'tuple'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is:
+++++ generated is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is:
+++++ generated is:
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+++++ generated is:
+======  value is:
+======  value is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+======  value is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>
+
+++++ generated is:
+++++ generated is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is:
+======  value is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is:
+++++ generated is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+++++ generated is:
+++++ generated is:
+======  value is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is:
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+ <object object at 0x7f52254f20e0>
+
+++++ generated is:
+++++ generated is:
+======  value is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+ <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+++++ generated is:
+======  value is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>
+
+++++ generated is:
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+++++ generated is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f52254f20e0>  , generated type: <class 'object'>
+ <object object at 0x7f52254f20e0>
+
+======  value is:
+======  value is: <object object at 0x7f52254f20e0>
+ <object object at 0x7f52254f20e0>
+['some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value', 'some value']
+(original_dogpilecache)
+
+
+
+=======================================================================

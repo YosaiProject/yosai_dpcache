@@ -1,0 +1,327 @@
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+++++ generated is:
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+
+++++ generated is:
+
+
+
+++++ generated is: <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+++++ generated is:
+++++ generated is:
+++++ generated is: <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+----_++++++ elif value is NOT_REGENERATED <object object at 0x7f3924429270>  , generated type: <class 'object'>
+ <object object at 0x7f3924429270>  , generated type: <class 'object'>
+ <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+----_++++++ elif value is NOT_REGENERATED
+
+----_++++++ elif value is NOT_REGENERATED
+
+----_++++++ elif value is NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+****** NeedRegenerationException, value assigned to NOT_REGENERATED
+----_++++++ elif value is NOT_REGENERATED
+
+----_++++++ elif value is NOT_REGENERATED
+
+
+
+
+
+++++ generated is:
+----_++++++_######## NeedRegenerationException!
+
+++++ generated is: <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+++++ generated is:
+----_++++++_######## NeedRegenerationException!
+----_++++++_######## NeedRegenerationException!  <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+----_++++++ elif value is NOT_REGENERATED
+ <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+----_++++++_######## NeedRegenerationException!
+----_++++++_######## NeedRegenerationException!
+
+----_++++++_######## NeedRegenerationException!
+
+
+
+
+----_++++++ elif value is NOT_REGENERATED
+
+
+----_++++++_######## NeedRegenerationException!
+----_++++++ elif value is NOT_REGENERATEDException in thread Thread-2:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+Exception in thread Thread-4:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+
+Exception in thread Thread-7:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+----_++++++_######## NeedRegenerationException!
+Exception in thread Thread-5:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+----_++++++_######## NeedRegenerationException! Exception in thread Thread-8:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+Exception in thread Thread-9:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+Exception in thread Thread-10:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+
+
+
+
+Exception in thread Thread-6:
+Traceback (most recent call last):
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 76, in _enter
+    value = value_fn()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 461, in get_value
+    raise NeedRegenerationException()
+yosai_dpcache.dogpile.core.dogpile.NeedRegenerationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/threading.py", line 920, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.4/threading.py", line 868, in run
+    self._target(*self._args, **self._kwargs)
+  File "<ipython-input-1-c138f31c5a6c>", line 55, in f
+    results.append(reg.get_or_create("some key", creator, 100))
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/cache/region.py", line 469, in get_or_create
+    with Lock(self._mutex(key), gen_value, get_value) as value:
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 120, in __enter__
+    return self._enter()
+  File "/home/dowwie/Python/venv/yosai_dpcache/lib/python3.4/site-packages/yosai_dpcache-0.1.0-py3.4.egg/yosai_dpcache/dogpile/core/dogpile.py", line 81, in _enter
+    raise Exception("Generation function should have just been"
+Exception: Generation function should have just been called by a concurrent thread.
+
+
+++++ generated is: IndexedAuthorizationInfo(permissions=frozenset({'domain3'}):frozenset({'action1', 'action3', 'action2'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action3'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain2'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain1'}):frozenset({'action1'}):frozenset({'*'}),frozenset({'*'}):frozenset({'action5'}):frozenset({'*'}), roles={SimpleRole(identifier=role1), SimpleRole(identifier=role2), SimpleRole(identifier=role3)})  , generated type: <class 'yosai.authz.authz.IndexedAuthorizationInfo'>
+
+----_------ if generated is not NOT_REGENERATED
+
+++++ generated is: <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f3924429270>
+
+++++ generated is: <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f3924429270>
+
+++++ generated is: <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f3924429270>
+
+++++ generated is: <object object at 0x7f3924429270>  , generated type: <class 'object'>
+
+======  value is: <object object at 0x7f3924429270>
+canary:  [True]
+number of results:  5
+
+results:
+[IndexedAuthorizationInfo(permissions=frozenset({'domain3'}):frozenset({'action1', 'action3', 'action2'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action3'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain2'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain1'}):frozenset({'action1'}):frozenset({'*'}),frozenset({'*'}):frozenset({'action5'}):frozenset({'*'}), roles={SimpleRole(identifier=role1), SimpleRole(identifier=role2), SimpleRole(identifier=role3)}),
+ IndexedAuthorizationInfo(permissions=frozenset({'domain3'}):frozenset({'action1', 'action3', 'action2'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action3'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain2'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain1'}):frozenset({'action1'}):frozenset({'*'}),frozenset({'*'}):frozenset({'action5'}):frozenset({'*'}), roles={SimpleRole(identifier=role1), SimpleRole(identifier=role2), SimpleRole(identifier=role3)}),
+ IndexedAuthorizationInfo(permissions=frozenset({'domain3'}):frozenset({'action1', 'action3', 'action2'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action3'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain2'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain1'}):frozenset({'action1'}):frozenset({'*'}),frozenset({'*'}):frozenset({'action5'}):frozenset({'*'}), roles={SimpleRole(identifier=role1), SimpleRole(identifier=role2), SimpleRole(identifier=role3)}),
+ IndexedAuthorizationInfo(permissions=frozenset({'domain3'}):frozenset({'action1', 'action3', 'action2'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action3'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain2'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain1'}):frozenset({'action1'}):frozenset({'*'}),frozenset({'*'}):frozenset({'action5'}):frozenset({'*'}), roles={SimpleRole(identifier=role1), SimpleRole(identifier=role2), SimpleRole(identifier=role3)}),
+ IndexedAuthorizationInfo(permissions=frozenset({'domain3'}):frozenset({'action1', 'action3', 'action2'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action3'}):frozenset({'target1'}),frozenset({'domain4'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain2'}):frozenset({'action1', 'action2'}):frozenset({'*'}),frozenset({'domain1'}):frozenset({'action1'}):frozenset({'*'}),frozenset({'*'}):frozenset({'action5'}):frozenset({'*'}), roles={SimpleRole(identifier=role1), SimpleRole(identifier=role2), SimpleRole(identifier=role3)})]

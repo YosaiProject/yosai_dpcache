@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: yosai-dpcache
+Version: 0.1.0
+Summary: A caching front-end, based on the Dogpile lock and compatible with Yosai serialization methods
+Home-page: https://github.com/YosaiProject/yosai_dpcache
+Author: Darin Gordon
+Author-email: dkcdkg@gmail.com
+License: Apache License 2.0
+Description: # yosai_dpcache
+        DogPile Cache Integration
+        
+Keywords: caching
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
