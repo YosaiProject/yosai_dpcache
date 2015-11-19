@@ -387,35 +387,6 @@ class CacheRegion(object):
             key = self.key_mangler(key)
         return self.backend.get(key)
 
-    def get_multi(self, keys):
-        """
-        Return multiple values from the cache, based on the given keys.
-
-        Returns values as a list matching the keys given.
-
-        E.g.::
-
-            values = region.get_multi(["one", "two", "three"])
-
-        To convert values to a dictionary, use ``zip()``::
-
-            keys = ["one", "two", "three"]
-            values = region.get_multi(keys)
-            dictionary = dict(zip(keys, values))
-
-        Keys which aren't present in the list are returned as
-        the ``NO_VALUE`` token.  ``NO_VALUE`` evaluates to False,
-        but is separate from ``None`` to distinguish between a cached
-        value of ``None``.
-        """
-        if not keys:
-            return []
-
-        if self.key_mangler:
-            keys = list(map(lambda key: self.key_mangler(key), keys))
-
-        return self.backend.get_multi(keys)
-
     def get_or_create(self, key, creator, expiration):
         """
         Return a cached value based on the given key.
@@ -478,25 +449,6 @@ class CacheRegion(object):
         exp = expiration if expiration else self.expiration
 
         self.backend.set(key, value, exp)
-
-    def set_multi(self, mapping, expiration=None):
-        """Place new values in the cache under the given keys.
-
-        .. versionadded:: 0.5.0
-
-        """
-        if not mapping:
-            return
-
-        exp = expiration if expiration else self.expiration
-
-        if self.key_mangler:
-            mapping = dict((self.key_mangler(k), v)
-                           for k, v in mapping.items())
-        else:
-            mapping = dict((k, v) for k, v in mapping.items())
-
-        self.backend.set_multi(mapping, exp)
 
     def delete(self, key):
         """Remove a value from the cache.
