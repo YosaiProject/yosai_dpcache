@@ -413,16 +413,10 @@ class CacheRegion(object):
 
         :param creator: function used to create a new value
 
-        :param expiration_time: expiration time that will overide
+        :param expiration: expiration time that will overide
          the expiration time already configured on this :class:`.CacheRegion`
-
-        .. seealso::
-
-            :meth:`.CacheRegion.get_or_create_multi` - multiple key/value
-             version
-
         """
-        orig_key = key
+        
         if self.key_mangler:
             key = self.key_mangler(key)
 
@@ -440,7 +434,7 @@ class CacheRegion(object):
         with Lock(self._mutex(key), gen_value, get_value) as value:
             return value
 
-    def set(self, key, value, expiration=None):
+    def put(self, key, value, expiration=None):
         """Place a new value in the cache under the given key."""
 
         if self.key_mangler:
@@ -448,7 +442,7 @@ class CacheRegion(object):
 
         exp = expiration if expiration else self.expiration
 
-        self.backend.set(key, value, exp)
+        self.backend.put(key, value, exp)
 
     def delete(self, key):
         """Remove a value from the cache.
@@ -461,21 +455,6 @@ class CacheRegion(object):
             key = self.key_mangler(key)
 
         self.backend.delete(key)
-
-    def delete_multi(self, keys):
-        """Remove multiple values from the cache.
-
-        This operation is idempotent (can be called multiple times, or on a
-        non-existent key, safely)
-
-        .. versionadded:: 0.5.0
-
-        """
-
-        if self.key_mangler:
-            keys = list(map(lambda key: self.key_mangler(key), keys))
-
-        self.backend.delete_multi(keys)
 
 
 def make_region(*arg, **kw):

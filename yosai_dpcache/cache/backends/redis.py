@@ -139,25 +139,8 @@ class RedisBackend(CacheBackend):
     def get(self, key):
         return self.client.get(key)
 
-    def get_multi(self, keys):
-        if not keys:
-            return []
-        values = self.client.mget(keys)
-        return [v for v in values]
-
-    def set(self, key, value, expiration):
+    def put(self, key, value, expiration):
         self.client.setex(key, expiration, value)
-
-    def set_multi(self, mapping, expiration):
-        mapping = dict((k, v) for k, v in mapping.items())
-
-        pipe = self.client.pipeline()
-        for key, value in mapping.items():
-            pipe.setex(key, expiration, value)
-        pipe.execute()
 
     def delete(self, key):
         self.client.delete(key)
-
-    def delete_multi(self, keys):
-        self.client.delete(*keys)
