@@ -139,8 +139,8 @@ class RedisBackend(CacheBackend):
     def get(self, key):
         return self.client.get(key)
 
-    def put(self, key, value, expiration):
-        self.client.setex(key, expiration, value)
+    def set(self, key, value, expiration):
+        self.client.set(key, value, ex=expiration)
 
     def delete(self, key):
         self.client.delete(key)

@@ -434,7 +434,7 @@ class CacheRegion(object):
         with Lock(self._mutex(key), gen_value, get_value) as value:
             return value
 
-    def put(self, key, value, expiration=None):
+    def set(self, key, value, expiration=None):
         """Place a new value in the cache under the given key."""
 
         if self.key_mangler:
@@ -442,7 +442,7 @@ class CacheRegion(object):
 
         exp = expiration if expiration else self.expiration
 
-        self.backend.put(key, value, exp)
+        self.backend.set(key, value, exp)
 
     def delete(self, key):
         """Remove a value from the cache.
