@@ -1,4 +1,4 @@
-from yosai_dpcache.cache.proxy import ProxyBackend
+from yosai_dpcache.cache import ProxyBackend
 
 
 class SerializationProxy(ProxyBackend):

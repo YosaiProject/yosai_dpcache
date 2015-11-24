@@ -1,5 +1,6 @@
 ---
 INIT_CONFIG:
+    backend: 'yosai_dpcache.redis'
     region_name: 'yosai_dpcache'
 
 SERVER_CONFIG:
@@ -17,7 +18,7 @@ SERVER_CONFIG:
     # connection_pool:
 
 TTL_CONFIG:
-    absolute_ttl: 60
-    credentials_ttl: 5
-    authz_info_ttl: 60
-    session_absolute_ttl: 30
+    absolute_ttl: 3600
+    credentials_ttl: 300
+    authz_info_ttl: 1800
+    session_absolute_ttl: 1800

@@ -17,20 +17,20 @@ specific language governing permissions and limitations
 under the License.
 """
 
-#from abc import abstractmethod
+from yosai import (
+    # LogManager,
+    SerializationManager,
+    cache_abcs,
+)
 
-#from yosai import (
-#    LogManager,
-#    cache_abcs,
-#)
-
-from yosai_dpcache import (
+from yosai_dpcache.cache import (
     make_region,
     cache_settings,
+    SerializationProxy,
 )
 
 
-class DPCacheHandler:  #(cache_abcs.CacheHandler):
+class DPCacheHandler(cache_abcs.CacheHandler):
 
     def __init__(self):
         self.credentials_ttl = cache_settings.credentials_ttl
@@ -41,18 +41,19 @@ class DPCacheHandler:  #(cache_abcs.CacheHandler):
         self.cache_region = self.create_cache_region(name=region_name)
 
     def create_cache_region(self, name):
-
+        sm = SerializationManager()
         cache_region = make_region(name=name)
 
-        cache_region.configure(backend='yosai_dpcache.cache.redis',
+        cache_region.configure(backend=cache_settings.backend,
                                expiration_time=cache_settings.absolute_ttl,
-                               arguments=cache_settings.server_config,
-                               wrap=SerializationProxy)
+                               arguments=cache_settings.redis_config,
+                               wrap=[(SerializationProxy, 
+                                      sm.serialize, sm.deserialize)])
 
         return cache_region
 
     def get_ttl(self, key):
-        return getattr(self, key + '_key', None)
+        return getattr(self, key + '_ttl', None)
 
     def generate_key(self, identifier, key):
         # simple for now yet TBD:
@@ -107,5 +108,5 @@ class DPCacheHandler:  #(cache_abcs.CacheHandler):
         :param obj:  a yosai object that contains an identifer
         :type obj:  Account, UsernamePasswordToken
         """
-        full_key = self.generate_key(identifier key)
+        full_key = self.generate_key(identifier, key)
         self.cache_region.delete(full_key)

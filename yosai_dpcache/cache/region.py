@@ -440,7 +440,7 @@ class CacheRegion(object):
         if self.key_mangler:
             key = self.key_mangler(key)
 
-        exp = expiration if expiration else self.expiration
+        exp = expiration if expiration else self.expiration_time
 
         self.backend.set(key, value, exp)
 

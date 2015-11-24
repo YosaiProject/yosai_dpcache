@@ -21,22 +21,21 @@ from yosai import (
     LazySettings,
 )
 
-CACHE_SETTINGS_ENV_VAR = "YOSAI_CACHE_SETTINGS"
-
 
 class CacheSettings:
 
     def __init__(self):
 
-        self.cache_config = LazySettings(CACHE_SETTINGS_ENV_VAR)
+        cache_config = LazySettings("YOSAI_CACHE_SETTINGS")
 
-        region_init_config = self.cache_config.get('INIT_CONFIG')
+        region_init_config = cache_config.INIT_CONFIG
         self.region_name = region_init_config.get('region_name')
+        self.backend = region_init_config.get('backend')
 
-        server_config = self.cache_config.get('SERVER_CONFIG')
+        server_config = cache_config.SERVER_CONFIG
         self.redis_config = server_config.get('REDIS')
 
-        ttl_config = self.cache_config.get('TTL_CONFIG')
+        ttl_config = cache_config.TTL_CONFIG
         self.absolute_ttl = ttl_config.get('absolute_ttl')
         self.credentials_ttl = ttl_config.get('credentials_ttl')
         self.authz_info_ttl = ttl_config.get('authz_info_ttl')

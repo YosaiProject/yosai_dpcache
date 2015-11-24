@@ -6,7 +6,18 @@ from .region import (
     make_region,
 )
 
+from .proxy import (
+    ProxyBackend,
+)
+
 from .settings import (
     cache_settings,
 )
 
+from .proxybackend import (
+    SerializationProxy,    
+)
+
+from .cachehandler import (
+    DPCacheHandler,
+)
