@@ -1,8 +1,8 @@
 ---
-INIT_CONFIG
+INIT_CONFIG:
     region_name: 'yosai_dpcache'
 
-SERVER_CONFIG
+SERVER_CONFIG:
   REDIS:
     url: '127.0.0.1'
     host: 'localhost'
@@ -16,7 +16,7 @@ SERVER_CONFIG
     # redis_expiration_time:
     # connection_pool:
 
-TTL_CONFIG
+TTL_CONFIG:
     absolute_ttl: 60
     credentials_ttl: 5
     authz_info_ttl: 60
