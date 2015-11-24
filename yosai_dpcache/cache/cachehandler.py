@@ -17,60 +17,39 @@ specific language governing permissions and limitations
 under the License.
 """
 
-from abc import abstractmethod
+#from abc import abstractmethod
 
-from yosai import (
-    CacheException,
-    LogManager,
-    cache_abcs,
-    settings,
+#from yosai import (
+#    LogManager,
+#    cache_abcs,
+#)
+
+from yosai_dpcache import (
+    make_region,
+    cache_settings,
 )
 
 
-class CacheSettings():
-    """
-    This is a proxy to the global settings module
-    - new to yosai
-    """
+class DPCacheHandler:  #(cache_abcs.CacheHandler):
+
     def __init__(self):
-        self.cache_config = settings.CACHE_CONFIG
-
-        self.region_init_config = self.cache_config.get('INIT_CONFIG')
-
-        self.server_config = self.cache_config.get('SERVER_CONFIG')
-
-        ttl_config = self.cache_config.get('TTL_CONFIG')
-        self.absolute_ttl = ttl_config.get('ABSOLUTE_TTL')
-        self.credentials_ttl = ttl_config.get('CREDENTIALS_TTL')
-        self.authz_info_ttl = ttl_config.get('AUTHZ_INFO_TTL')
-        self.session_abs_ttl = ttl_config.get('SESSION_ABSOLUTE_TTL')
-
-# this belongs in yosai_dpcache as it is dogpile.cache specific
-def create_cache_region(cache_settings, make_region):
-
-    cache_region = make_region(**cache_settings.region_init_config)
-
-    cache_region.configure(backend='yosai_dpcache.cache.redis',
-                           expiration_time=cache_settings.absolute_ttl,
-                           arguments=cache_settings.server_config,
-                           wrap=SerializationProxy)
-
-    return cache_region
-
-
-class CacheHandler(cache_abcs.CacheHandler):
-
-    def __init__(self, cache_region, cache_settings):
-        """
-        :type cache_region: a [yosai_dpcache] CacheRegion object
-        """
-        self.cache_region = cache_region
-
-        # hard coding these for now:
-
         self.credentials_ttl = cache_settings.credentials_ttl
         self.authz_info_ttl = cache_settings.authz_info_ttl
         self.session_ttl = cache_settings.session_abs_ttl
+
+        region_name = cache_settings.region_name
+        self.cache_region = self.create_cache_region(name=region_name)
+
+    def create_cache_region(self, name):
+
+        cache_region = make_region(name=name)
+
+        cache_region.configure(backend='yosai_dpcache.cache.redis',
+                               expiration_time=cache_settings.absolute_ttl,
+                               arguments=cache_settings.server_config,
+                               wrap=SerializationProxy)
+
+        return cache_region
 
     def get_ttl(self, key):
         return getattr(self, key + '_key', None)

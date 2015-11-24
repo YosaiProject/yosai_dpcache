@@ -1,0 +1,45 @@
+"""
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+"""
+
+from yosai import (
+    LazySettings,
+)
+
+CACHE_SETTINGS_ENV_VAR = "YOSAI_CACHE_SETTINGS"
+
+
+class CacheSettings:
+
+    def __init__(self):
+
+        self.cache_config = LazySettings(CACHE_SETTINGS_ENV_VAR)
+
+        region_init_config = self.cache_config.get('INIT_CONFIG')
+        self.region_name = region_init_config.get('region_name')
+
+        server_config = self.cache_config.get('SERVER_CONFIG')
+        self.redis_config = server_config.get('REDIS')
+
+        ttl_config = self.cache_config.get('TTL_CONFIG')
+        self.absolute_ttl = ttl_config.get('absolute_ttl')
+        self.credentials_ttl = ttl_config.get('credentials_ttl')
+        self.authz_info_ttl = ttl_config.get('authz_info_ttl')
+        self.session_abs_ttl = ttl_config.get('session_absolute_ttl')
+
+cache_settings = CacheSettings()
