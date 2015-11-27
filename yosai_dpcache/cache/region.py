@@ -387,7 +387,7 @@ class CacheRegion(object):
             key = self.key_mangler(key)
         return self.backend.get(key)
 
-    def get_or_create(self, key, creator, expiration):
+    def get_or_create(self, key, creator_func, creator, expiration):
         """
         Return a cached value based on the given key.
 
@@ -411,12 +411,13 @@ class CacheRegion(object):
          be of any type recognized by the backend or by the key_mangler
          function, if present.
 
-        :param creator: function used to create a new value
+        :param creator_func: function used to create a new value
+        :param creator: the instance to run creator_func
 
         :param expiration: expiration time that will overide
          the expiration time already configured on this :class:`.CacheRegion`
         """
-        
+
         if self.key_mangler:
             key = self.key_mangler(key)
 
@@ -427,7 +428,7 @@ class CacheRegion(object):
             return value
 
         def gen_value():
-            created_value = creator()
+            created_value = creator_func(creator)
             self.backend.set(key, created_value, expiration)
             return created_value
 

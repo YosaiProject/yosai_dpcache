@@ -37,8 +37,8 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         self.authz_info_ttl = cache_settings.authz_info_ttl
         self.session_ttl = cache_settings.session_abs_ttl
 
-        region_name = cache_settings.region_name
-        self.cache_region = self.create_cache_region(name=region_name)
+        self.cache_name = cache_settings.region_name
+        self.cache_region = self.create_cache_region(name=self.cache_name)
 
     def create_cache_region(self, name):
         sm = SerializationManager()
@@ -67,7 +67,7 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         full_key = self.generate_key(identifier, key)
         return self.cache_region.get(full_key)
 
-    def get_or_create(self, key, identifier, creator_func):
+    def get_or_create(self, key, identifier, creator_func, creator):
         """
         This method will try to obtain an object from cache.  If the object is
         not available from cache, the creator_func function is called to generate
@@ -87,7 +87,8 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         full_key = self.generate_key(identifier, key)
         ttl = self.get_ttl(key)
         return self.cache_region.get_or_create(key=full_key,
-                                               creator=creator_func,
+                                               creator_func=creator_func,
+                                               creator=creator,
                                                expiration=ttl)
 
     def set(self, key, identifier, value):
