@@ -105,6 +105,8 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         """
         obtains keys from cache that match pattern
 
+        CAUTION:  use for debugging only as it is taxes redis hard and is slow
+
         :returns: list of bytestrings
         """
         return self.cache_region.keys(pattern)
