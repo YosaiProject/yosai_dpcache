@@ -93,3 +93,6 @@ class ProxyBackend(CacheBackend):
 
     def get_mutex(self, key):
         return self.proxied.get_mutex(key)
+
+    def keys(self, pattern):
+        return self.proxied.keys(pattern)

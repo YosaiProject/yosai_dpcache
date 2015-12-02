@@ -144,3 +144,14 @@ class RedisBackend(CacheBackend):
 
     def delete(self, key):
         self.client.delete(key)
+
+    def keys(self, pattern):
+        """
+        Returns a list of keys (bytestrings) matching pattern
+
+        :param pattern: the string by which to search for keys with,
+                        containing wildcards and expressions understood by
+                        redis
+        :returns: a list of bytestrings
+        """
+        return self.client.keys(pattern)

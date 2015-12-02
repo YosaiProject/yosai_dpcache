@@ -47,7 +47,7 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         cache_region.configure(backend=cache_settings.backend,
                                expiration_time=cache_settings.absolute_ttl,
                                arguments=cache_settings.redis_config,
-                               wrap=[(SerializationProxy, 
+                               wrap=[(SerializationProxy,
                                       sm.serialize, sm.deserialize)])
 
         return cache_region
@@ -60,10 +60,6 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         return "yosai:{0}:{1}".format(identifier, key)
 
     def get(self, key, identifier):
-        """
-        :param obj:  a yosai object that contains an identifer
-        :type obj:  Account, UsernamePasswordToken
-        """
         full_key = self.generate_key(identifier, key)
         return self.cache_region.get(full_key)
 
@@ -93,9 +89,6 @@ class DPCacheHandler(cache_abcs.CacheHandler):
 
     def set(self, key, identifier, value):
         """
-        :param obj:  a yosai object that contains the key identifer
-        :type obj:  Account, UsernamePasswordToken
-
         :param value:  the Serializable object to cache
         """
         full_key = self.generate_key(identifier, key)
@@ -105,9 +98,14 @@ class DPCacheHandler(cache_abcs.CacheHandler):
     def delete(self, key, identifier):
         """
         Removes an object from cache
-
-        :param obj:  a yosai object that contains an identifer
-        :type obj:  Account, UsernamePasswordToken
         """
         full_key = self.generate_key(identifier, key)
         self.cache_region.delete(full_key)
+
+    def keys(self, pattern):
+        """
+        obtains keys from cache that match pattern
+
+        :returns: list of bytestrings
+        """
+        return self.cache_region.keys(pattern)

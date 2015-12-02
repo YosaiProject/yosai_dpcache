@@ -457,6 +457,14 @@ class CacheRegion(object):
 
         self.backend.delete(key)
 
+    def keys(self, pattern):
+        """
+        searches for keys matching pattern, returns accordingly
+
+        :returns: list of bytestrings
+        """
+        return self.backend.keys(pattern)
+
 
 def make_region(*arg, **kw):
     """Instantiate a new :class:`.CacheRegion`.

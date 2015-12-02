@@ -28,4 +28,10 @@ class SerializationProxy(ProxyBackend):
                               mapping.items()}
         self.proxied.set_multi(serialized_mapping, expiration)
 
+    def delete(self, key):
+        self.proxied.delete(key)
+
+    def keys(self, pattern):
+        return self.proxied.keys(pattern)
+
     # delete, delete_multi, and get_mutext operations are inherited
