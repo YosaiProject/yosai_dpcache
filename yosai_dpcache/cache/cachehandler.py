@@ -55,15 +55,15 @@ class DPCacheHandler(cache_abcs.CacheHandler):
     def get_ttl(self, key):
         return getattr(self, key + '_ttl', None)
 
-    def generate_key(self, identifier, key):
+    def generate_key(self, identifier, domain):
         # simple for now yet TBD:
-        return "yosai:{0}:{1}".format(identifier, key)
+        return "yosai:{0}:{1}".format(identifier, domain)
 
-    def get(self, key, identifier):
-        full_key = self.generate_key(identifier, key)
+    def get(self, domain, identifier):
+        full_key = self.generate_key(identifier, domain)
         return self.cache_region.get(full_key)
 
-    def get_or_create(self, key, identifier, creator_func, creator):
+    def get_or_create(self, domain, identifier, creator_func, creator):
         """
         This method will try to obtain an object from cache.  If the object is
         not available from cache, the creator_func function is called to generate
@@ -73,33 +73,32 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         to generate the new object while other requesting threads wait for the
         value and then return it.
 
-        :param obj:  a yosai object that contains an identifer
-        :type obj:  Account, UsernamePasswordToken
-
         :param creator_func: the function called to generate a new
                              Serializable object for cache
         :type creator_func:  function
+
+        :param creator: the object calling get_or_create
         """
-        full_key = self.generate_key(identifier, key)
-        ttl = self.get_ttl(key)
+        full_key = self.generate_key(identifier, domain)
+        ttl = self.get_ttl(domain)
         return self.cache_region.get_or_create(key=full_key,
                                                creator_func=creator_func,
                                                creator=creator,
                                                expiration=ttl)
 
-    def set(self, key, identifier, value):
+    def set(self, domain, identifier, value):
         """
         :param value:  the Serializable object to cache
         """
-        full_key = self.generate_key(identifier, key)
-        ttl = self.get_ttl(key)
+        full_key = self.generate_key(identifier, domain)
+        ttl = self.get_ttl(domain)
         self.cache_region.set(full_key, value, expiration=ttl)
 
-    def delete(self, key, identifier):
+    def delete(self, domain, identifier):
         """
         Removes an object from cache
         """
-        full_key = self.generate_key(identifier, key)
+        full_key = self.generate_key(identifier, domain)
         self.cache_region.delete(full_key)
 
     def keys(self, pattern):
