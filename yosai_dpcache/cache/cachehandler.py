@@ -17,7 +17,7 @@ specific language governing permissions and limitations
 under the License.
 """
 
-from yosai import (
+from yosai.core import (
     # LogManager,
     SerializationManager,
     cache_abcs,
