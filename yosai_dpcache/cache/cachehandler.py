@@ -60,6 +60,8 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         return "yosai:{0}:{1}".format(identifier, domain)
 
     def get(self, domain, identifier):
+        if identifier is None:
+            return
         full_key = self.generate_key(identifier, domain)
         return self.cache_region.get(full_key)
 
@@ -79,6 +81,8 @@ class DPCacheHandler(cache_abcs.CacheHandler):
 
         :param creator: the object calling get_or_create
         """
+        if identifier is None:
+            return
         full_key = self.generate_key(identifier, domain)
         ttl = self.get_ttl(domain)
         return self.cache_region.get_or_create(key=full_key,
@@ -90,6 +94,8 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         """
         :param value:  the Serializable object to cache
         """
+        if value is None:
+            return
         full_key = self.generate_key(identifier, domain)
         ttl = self.get_ttl(domain)
         self.cache_region.set(full_key, value, expiration=ttl)
@@ -98,6 +104,8 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         """
         Removes an object from cache
         """
+        if identifier is None:
+            return
         full_key = self.generate_key(identifier, domain)
         self.cache_region.delete(full_key)
 
