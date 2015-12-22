@@ -1,4 +1,0 @@
-mock
-redis
-pytest
-pytest-cov
