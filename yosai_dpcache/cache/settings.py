@@ -41,4 +41,6 @@ class CacheSettings:
         self.authz_info_ttl = ttl_config.get('authz_info_ttl')
         self.session_abs_ttl = ttl_config.get('session_absolute_ttl')
 
-cache_settings = CacheSettings()
+
+def load_cache_settings():
+    return CacheSettings()

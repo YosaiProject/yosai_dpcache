@@ -1,8 +1,8 @@
 __version__ = '0.1.0'
 
 from .region import (
-    CacheRegion, 
-    register_backend, 
+    CacheRegion,
+    register_backend,
     make_region,
 )
 
@@ -11,11 +11,11 @@ from .proxy import (
 )
 
 from .settings import (
-    cache_settings,
+    load_cache_settings,
 )
 
 from .proxybackend import (
-    SerializationProxy,    
+    SerializationProxy,
 )
 
 from .cachehandler import (

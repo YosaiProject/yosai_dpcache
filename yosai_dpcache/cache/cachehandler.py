@@ -18,38 +18,54 @@ under the License.
 """
 
 from yosai.core import (
-    # LogManager,
     SerializationManager,
     cache_abcs,
 )
 
 from yosai_dpcache.cache import (
     make_region,
-    cache_settings,
+    load_cache_settings,
     SerializationProxy,
 )
 
 
 class DPCacheHandler(cache_abcs.CacheHandler):
 
-    def __init__(self):
-        self.credentials_ttl = cache_settings.credentials_ttl
-        self.authz_info_ttl = cache_settings.authz_info_ttl
-        self.session_ttl = cache_settings.session_abs_ttl
+    def __init__(self, ttl=None, region_name=None, backend=None,
+                 region_arguments=None):
+        """
+        You may either explicitly configure the CacheHandler or default to
+        settings defined in a yaml file.
+        """
+        if not all([ttl, region_name, region_arguments]):
+            cache_settings = load_cache_settings()
+            self.absolute_ttl = cache_settings.absolute_ttl
+            self.credentials_ttl = cache_settings.credentials_ttl
+            self.authz_info_ttl = cache_settings.authz_info_ttl
+            self.session_ttl = cache_settings.session_abs_ttl
+            self.region_name = cache_settings.region_name
+            self.backend = cache_settings.backend
+            self.region_arguments = cache_settings.region_arguments
+        else:
+            self.absolute_ttl = ttl.get('absolute_ttl', 60)
+            self.credentials_ttl = ttl.get('credentials_ttl', 10)
+            self.authz_info_ttl = ttl.get('authz_info_ttl', 60)
+            self.session_ttl = ttl.get('session_abs_ttl', 60)
+            self.region_name = region_name
+            self.backend = backend
+            self.region_arguments = region_arguments
 
-        self.cache_name = cache_settings.region_name
-        self.cache_region = self.create_cache_region(name=self.cache_name)
+        self.cache_region = self.create_cache_region(name=self.region_name)
 
     def create_cache_region(self, name):
         sm = SerializationManager()
         cache_region = make_region(name=name)
 
-        cache_region.configure(backend=cache_settings.backend,
-                               expiration_time=cache_settings.absolute_ttl,
-                               arguments=cache_settings.redis_config,
+        cache_region.configure(backend=self.backend,
+                               expiration_time=self.absolute_ttl,
+                               arguments=self.region_arguments,
                                wrap=[(SerializationProxy,
                                       sm.serialize, sm.deserialize)])
-
         return cache_region
 
     def get_ttl(self, key):
