@@ -33,7 +33,7 @@ class CacheSettings:
         self.backend = region_init_config.get('backend')
 
         server_config = cache_config.SERVER_CONFIG
-        self.redis_config = server_config.get('REDIS')
+        self.region_arguments = server_config.get('REDIS')
 
         ttl_config = cache_config.TTL_CONFIG
         self.absolute_ttl = ttl_config.get('absolute_ttl')
