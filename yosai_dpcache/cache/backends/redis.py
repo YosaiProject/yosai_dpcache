@@ -39,13 +39,9 @@ class RedisBackend(CacheBackend):
     :param url: string. If provided, will override separate host/port/db
      params.  The format is that accepted by ``StrictRedis.from_url()``.
 
-     .. versionadded:: 0.4.1
-
     :param host: string, default is ``localhost``.
 
     :param password: string, default is no password.
-
-     .. versionadded:: 0.4.1
 
     :param port: integer, default is ``6379``.
 
@@ -62,27 +58,18 @@ class RedisBackend(CacheBackend):
      Redis should expire it.  This argument is only valid when
      ``distributed_lock`` is ``True``.
 
-     .. versionadded:: 0.5.0
-
     :param socket_timeout: float, seconds for socket timeout.
      Default is None (no timeout).
-
-     .. versionadded:: 0.5.4
 
     :param lock_sleep: integer, number of seconds to sleep when failed to
      acquire a lock.  This argument is only valid when
      ``distributed_lock`` is ``True``.
-
-     .. versionadded:: 0.5.0
 
     :param connection_pool: ``redis.ConnectionPool`` object.  If provided,
      this object supersedes other connection arguments passed to the
      ``redis.StrictRedis`` instance, including url and/or host as well as
      socket_timeout, and will be passed to ``redis.StrictRedis`` as the
      source of connectivity.
-
-     .. versionadded:: 0.5.4
-
 
     """
 
