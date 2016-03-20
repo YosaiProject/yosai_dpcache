@@ -2,6 +2,7 @@
 # Yosai DPCache:  "DogPile" Cache Integration
 
 ![](/img/cache_bw.png)
+
 This is a Yosai integration using a fork of the dogpile project, authored by Mike Bayer. 
 
 The dogpile project consists of two sub-projects:  ``dogpile.core`` and ``dogpile.cache``.
@@ -11,6 +12,7 @@ serialization supported by Yosai and making a few other customizations.
 ## Serialization
 
 ![](/img/serialization_process.png)
+
 Yosai reduces objects to their serializable form using the ``marshmallow`` library, 
 encodes the "reductions" with msgpack, json, or other encoding scheme, and then caches
 the objects.  
