@@ -26,6 +26,21 @@ re-materialized into Yosai objects.
 Install YosaiDPCache from PyPI using pip: ``pip install yosai_dpcache``
 
 
+## Setup
+
+A YosaiDPCache.DPCacheHandler can be configured through one of two ways:
+
+* Option 1: YAML Config File
+    1. Define a system environment variable, YOSAI_CACHE_SETTINGS, that points to 
+       the location of cache_settings.yaml file and make sure that the file
+       permissions make it readable.
+    
+    2. Instantiate a DPCacheHandler without arguments.  
+
+* Option 2: instantiate a DPCacheHandler, passing *all* of the required 
+            arguments (see cachehandler.py and settings.py for detail)
+
+
 ## Dev Status (as of YosaiDPCache v0.0.5)
 
 ### Redis is Ready for Use
