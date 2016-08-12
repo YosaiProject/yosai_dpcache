@@ -33,7 +33,7 @@ from yosai_dpcache.cache import (
 class DPCacheHandler(cache_abcs.CacheHandler):
 
     def __init__(self, ttl=None, region_name=None, backend=None,
-                 region_arguments=None):
+                 region_arguments=None, serialization_manager=None):
         """
         You may either explicitly configure the CacheHandler or default to
         settings defined in a yaml file.
@@ -56,9 +56,11 @@ class DPCacheHandler(cache_abcs.CacheHandler):
             self.backend = backend
             self.region_arguments = region_arguments
 
-        self._serialization_manager = SerializationManager() 
-
-        self.cache_region = self.create_cache_region(name=self.region_name)
+        if serialization_manager:
+            self.serialization_manager = serialization_manager
+        else: 
+            self._serialization_manager = None
+            self.cache_region = None  # initializes when serialization_manager is set 
 
     @property
     def serialization_manager(self):
