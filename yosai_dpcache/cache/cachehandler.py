@@ -18,6 +18,7 @@ under the License.
 """
 
 from yosai.core import (
+    CacheInitializationException,
     SerializationManager,
     cache_abcs,
 )
@@ -55,17 +56,33 @@ class DPCacheHandler(cache_abcs.CacheHandler):
             self.backend = backend
             self.region_arguments = region_arguments
 
+        self._serialization_manager = SerializationManager() 
+
+        self.cache_region = self.create_cache_region(name=self.region_name)
+
+    @property
+    def serialization_manager(self):
+        return self._serialization_manager
+
+    @serialization_manager.setter
+    def serialization_manager(self, manager):
+        self._serialization_manager = manager
         self.cache_region = self.create_cache_region(name=self.region_name)
 
     def create_cache_region(self, name):
-        sm = SerializationManager()
-        cache_region = make_region(name=name)
+        sm = self.serialization_manager 
 
-        cache_region.configure(backend=self.backend,
-                               expiration_time=self.absolute_ttl,
-                               arguments=self.region_arguments,
-                               wrap=[(SerializationProxy,
-                                      sm.serialize, sm.deserialize)])
+        try:
+            cache_region = make_region(name=name)
+            cache_region.configure(backend=self.backend,
+                                   expiration_time=self.absolute_ttl,
+                                   arguments=self.region_arguments,
+                                   wrap=[(SerializationProxy,
+                                          sm.serialize, sm.deserialize)])
+        except AttributeError:
+            msg = 'Failed to Initialize a CacheRegion. Verify serialization_manager'
+            raise CacheInitializationException(msg) 
+
         return cache_region
 
     def get_ttl(self, key):
