@@ -9,7 +9,7 @@ from .proxy import (
 )
 
 from .settings import (
-    load_cache_settings,
+    CacheSettings,
 )
 
 from .proxybackend import (

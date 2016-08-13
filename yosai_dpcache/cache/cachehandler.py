@@ -19,27 +19,26 @@ under the License.
 
 from yosai.core import (
     CacheInitializationException,
-    SerializationManager,
     cache_abcs,
 )
 
 from yosai_dpcache.cache import (
     make_region,
-    load_cache_settings,
+    CacheSettings,
     SerializationProxy,
 )
 
 
 class DPCacheHandler(cache_abcs.CacheHandler):
 
-    def __init__(self, ttl=None, region_name=None, backend=None,
+    def __init__(self, settings=None, ttl=None, region_name=None, backend=None,
                  region_arguments=None, serialization_manager=None):
         """
         You may either explicitly configure the CacheHandler or default to
         settings defined in a yaml file.
         """
         if not all([ttl, region_name, region_arguments]):
-            cache_settings = load_cache_settings()
+            cache_settings = CacheSettings(settings)
             self.absolute_ttl = cache_settings.absolute_ttl
             self.credentials_ttl = cache_settings.credentials_ttl
             self.authz_info_ttl = cache_settings.authz_info_ttl
@@ -58,9 +57,9 @@ class DPCacheHandler(cache_abcs.CacheHandler):
 
         if serialization_manager:
             self.serialization_manager = serialization_manager
-        else: 
+        else:
             self._serialization_manager = None
-            self.cache_region = None  # initializes when serialization_manager is set 
+            self.cache_region = None  # initializes when serialization_manager is set
 
     @property
     def serialization_manager(self):
@@ -72,7 +71,7 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         self.cache_region = self.create_cache_region(name=self.region_name)
 
     def create_cache_region(self, name):
-        sm = self.serialization_manager 
+        sm = self.serialization_manager
 
         try:
             cache_region = make_region(name=name)
@@ -83,7 +82,7 @@ class DPCacheHandler(cache_abcs.CacheHandler):
                                           sm.serialize, sm.deserialize)])
         except AttributeError:
             msg = 'Failed to Initialize a CacheRegion. Verify serialization_manager'
-            raise CacheInitializationException(msg) 
+            raise CacheInitializationException(msg)
 
         return cache_region
 

@@ -17,30 +17,29 @@ specific language governing permissions and limitations
 under the License.
 """
 
-from yosai.core import (
-    LazySettings,
-)
+from yosai.core import MisconfiguredException
 
 
 class CacheSettings:
+    def __init__(self, settings):
 
-    def __init__(self):
+        try:
+            cache_settings = settings.CACHE_HANDLER
+            region_init_config = cache_settings['init_config']
 
-        cache_config = LazySettings("YOSAI_CACHE_SETTINGS")
+            self.region_name = region_init_config['region_name']
+            self.backend = region_init_config.get('backend')
 
-        region_init_config = cache_config.INIT_CONFIG
-        self.region_name = region_init_config.get('region_name')
-        self.backend = region_init_config.get('backend')
+            server_config = cache_settings['server_config']
+            self.region_arguments = server_config.get('redis')
 
-        server_config = cache_config.SERVER_CONFIG
-        self.region_arguments = server_config.get('REDIS')
+            ttl_config = cache_settings['ttl_config']
+            self.absolute_ttl = ttl_config.get('absolute_ttl')
+            self.credentials_ttl = ttl_config.get('credentials_ttl')
+            self.authz_info_ttl = ttl_config.get('authz_info_ttl')
+            self.session_abs_ttl = ttl_config.get('session_absolute_ttl')
 
-        ttl_config = cache_config.TTL_CONFIG
-        self.absolute_ttl = ttl_config.get('absolute_ttl')
-        self.credentials_ttl = ttl_config.get('credentials_ttl')
-        self.authz_info_ttl = ttl_config.get('authz_info_ttl')
-        self.session_abs_ttl = ttl_config.get('session_absolute_ttl')
-
-
-def load_cache_settings():
-    return CacheSettings()
+        except (AttributeError, TypeError):
+            msg = ('yosai_dpcache CacheSettings requires a LazySettings instance '
+                   'with complete CACHE_HANDLER settings')
+            raise MisconfiguredException(msg)
