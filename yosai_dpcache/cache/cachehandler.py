@@ -81,7 +81,9 @@ class DPCacheHandler(cache_abcs.CacheHandler):
                                    wrap=[(SerializationProxy,
                                           sm.serialize, sm.deserialize)])
         except AttributeError:
-            msg = 'Failed to Initialize a CacheRegion. Verify serialization_manager'
+            msg = 'Failed to Initialize a CacheRegion. {one}'.\
+                format(one='serialization_manager not set'
+                       if not self.serialization_manager else '')
             raise CacheInitializationException(msg)
 
         return cache_region
