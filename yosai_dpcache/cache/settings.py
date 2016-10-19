@@ -17,9 +17,6 @@ specific language governing permissions and limitations
 under the License.
 """
 
-from yosai.core import MisconfiguredException
-
-
 class CacheSettings:
     def __init__(self, settings):
 
@@ -39,7 +36,7 @@ class CacheSettings:
             self.authz_info_ttl = ttl_config.get('authz_info_ttl')
             self.session_abs_ttl = ttl_config.get('session_absolute_ttl')
 
-        except (AttributeError, TypeError):
+        except (AttributeError, TypeError) as exc:
             msg = ('yosai_dpcache CacheSettings requires a LazySettings instance '
                    'with complete CACHE_HANDLER settings')
-            raise MisconfiguredException(msg)
+            raise exc.__class__(msg)

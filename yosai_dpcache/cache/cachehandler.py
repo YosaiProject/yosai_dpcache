@@ -18,7 +18,6 @@ under the License.
 """
 
 from yosai.core import (
-    CacheInitializationException,
     cache_abcs,
 )
 
@@ -84,7 +83,7 @@ class DPCacheHandler(cache_abcs.CacheHandler):
             msg = 'Failed to Initialize a CacheRegion. {one}'.\
                 format(one='serialization_manager not set'
                        if not self.serialization_manager else '')
-            raise CacheInitializationException(msg)
+            raise AttributeError(msg)
 
         return cache_region
 
