@@ -129,6 +129,19 @@ class RedisBackend(CacheBackend):
     def set(self, key, value, expiration):
         self.client.set(key, value, ex=expiration)
 
+    def hmset(self, name, mapping, expiration):
+        """
+        Set key to value within hash ``name`` for each corresponding
+        key and value from the ``mapping`` dict.
+        """
+        pipe = self.client.pipeline()
+        pipe.hmset(name, mapping)
+        pipe.expire(name, expiration)
+        return pipe.execute()
+
+    def hmget(self, name, keys):
+        return self.client.hmget(name, keys)
+
     def delete(self, key):
         self.client.delete(key)
 
@@ -142,3 +155,6 @@ class RedisBackend(CacheBackend):
         :returns: a list of bytestrings
         """
         return self.client.keys(pattern)
+
+    def exists(self, key):
+        return self.client.exists(key)

@@ -435,6 +435,53 @@ class CacheRegion(object):
         with Lock(self._mutex(key), gen_value, get_value) as value:
             return value
 
+    def hmget_or_create(self, key, keys, creator_func, creator, expiration):
+        """
+        Returns one or more cached values from a hash based on the given keys.
+
+        If a previous value is available, that value is returned immediately
+        and without blocking.
+
+        If the requested hash, not hash values, does not exist in cache, the provided
+        creation function is used to re-create and persist a hash to cache.
+
+        The creation function is used when a *dogpile lock* is acquired. If the
+        *dogpile lock* cannot be acquired it is because another thread or process
+        is already running a creation function against cache for the provided key.
+
+        If no previous value is available and the dogpile lock cannot be acquired,
+        get_or_create will block until the lock is released and a new value is
+        available.
+
+        :param key: Key to retrieve. While it's typical for a key to be a
+         string, it is ultimately passed directly down to the cache backend,
+         before being optionally processed by the key_mangler function, so can
+         be of any type recognized by the backend or by the key_mangler
+         function, if present.
+
+        :param creator_func: function used to create a new value
+        :param creator: the instance to run creator_func
+
+        :param expiration: expiration time that will overide
+         the expiration time already configured on this :class:`.CacheRegion`
+        """
+
+        if self.key_mangler:
+            key = self.key_mangler(key)
+
+        def get_value():
+            if not self.backend.exists(key):
+                raise NeedRegenerationException()
+            return self.backend.hmget(key, keys)
+
+        def gen_value():
+            created_value = creator_func(creator)
+            self.backend.hmset(key, created_value, expiration)
+            return self.backend.hmget(key, keys)
+
+        with Lock(self._mutex(key), gen_value, get_value) as value:
+            return value
+
     def set(self, key, value, expiration=None):
         """Place a new value in the cache under the given key."""
 

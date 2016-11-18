@@ -88,7 +88,7 @@ class DPCacheHandler(cache_abcs.CacheHandler):
         return cache_region
 
     def get_ttl(self, key):
-        return getattr(self, key + '_ttl', None)
+        return getattr(self, key + '_ttl', self.absolute_ttl)
 
     def generate_key(self, identifier, domain):
         # simple for now yet TBD:
@@ -124,6 +124,32 @@ class DPCacheHandler(cache_abcs.CacheHandler):
                                                creator_func=creator_func,
                                                creator=creator,
                                                expiration=ttl)
+
+    def hmget_or_create(self, domain, identifier, keys, creator_func, creator):
+        """
+        This method will try to obtain an object from cache.  If the object is
+        not available from cache, the creator_func function is called to generate
+        a new Serializable object and then the object is cached.  get_or_create
+        uses dogpile locking to avoid race condition among competing get_or_create
+        threads where by the first requesting thread obtains exclusive privilege
+        to generate the new object while other requesting threads wait for the
+        value and then return it.
+
+        :param creator_func: the function called to generate a new
+                             Serializable object for cache
+        :type creator_func:  function
+
+        :param creator: the object calling get_or_create
+        """
+        if identifier is None:
+            return
+        full_key = self.generate_key(identifier, domain)
+        ttl = self.get_ttl(domain)
+        return self.cache_region.hmget_or_create(key=full_key,
+                                                 keys=keys,
+                                                 creator_func=creator_func,
+                                                 creator=creator,
+                                                 expiration=ttl)
 
     def set(self, domain, identifier, value):
         """

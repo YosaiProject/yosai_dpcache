@@ -34,4 +34,16 @@ class SerializationProxy(ProxyBackend):
     def keys(self, pattern):
         return self.proxied.keys(pattern)
 
+    def hmget(self, name, keys):
+        return self.proxied.hmget(name, keys)
+
+    def hmset(self, name, mapping, expiration):
+        """
+        No serializing done for hmset, so this is just a passthrough.
+        """
+        return self.proxied.hmset(name, mapping, expiration)
+
+    def exists(self, key):
+        return self.proxied.exists(key)
+
     # delete, delete_multi, and get_mutext operations are inherited
